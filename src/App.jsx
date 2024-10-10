@@ -27,27 +27,29 @@ const App = () => {
       <Header />
       <TaskForm setTasks={setTasks} />
       <main className="app_main">
-        <TaskColumn
-          title="To do"
-          icon={todoIcon}
-          tasks={tasks}
-          status="todo"
-          handleDelete={handleDelete}
-        />
-        <TaskColumn
-          title="Doing"
-          icon={doingIcon}
-          tasks={tasks}
-          status="doing"
-          handleDelete={handleDelete}
-        />
-        <TaskColumn
-          title="Done"
-          icon={doneIcon}
-          tasks={tasks}
-          status="done"
-          handleDelete={handleDelete}
-        />
+        <div className="main-grid">
+          <TaskColumn
+            title="To do"
+            icon={todoIcon}
+            tasks={tasks}
+            status="todo"
+            handleDelete={handleDelete}
+          />
+          <TaskColumn
+            title="Doing"
+            icon={doingIcon}
+            tasks={tasks}
+            status="doing"
+            handleDelete={handleDelete}
+          />
+          <TaskColumn
+            title="Done"
+            icon={doneIcon}
+            tasks={tasks}
+            status="done"
+            handleDelete={handleDelete}
+          />
+        </div>
       </main>
     </div>
   );

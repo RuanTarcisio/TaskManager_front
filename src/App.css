@@ -7,9 +7,18 @@
     display: flex;
     justify-content: space-evenly;
     padding: 20px 8%;
+    flex-wrap: wrap; /* Permite que as colunas quebrem linha quando necessário */
 }
 
 .task_column {
-    width: 33.33%;
+    flex: 1 1 calc(33.33% - 40px); /* Cada coluna ocupa até 33.33%, menos as margens */
     margin: 20px;
+    max-width: 400px; /* Define um limite de largura */
+    box-sizing: border-box; /* Inclui a margem na largura total do elemento */
+}
+
+.main-grid {
+    display: flex;
+    gap: 20px; /* Espaçamento entre as colunas */
+    padding: 0px;
 }

@@ -10,7 +10,7 @@ const TaskForm = ({ setTasks }) => {
     tags: [],
   });
 
-  console.log("Task Data :", taskData);
+  const maxChars = 200; // Define o número máximo de caracteres permitidos
 
   const checkTag = (tag) => {
     return taskData.tags.some((item) => item === tag);
@@ -31,15 +31,15 @@ const TaskForm = ({ setTasks }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setTaskData((prev) => {
-      return { ...prev, [name]: value };
-    });
+    if (value.length <= maxChars) {
+      setTaskData((prev) => {
+        return { ...prev, [name]: value };
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskData);
     setTasks((prev) => {
       return [...prev, taskData];
     });
@@ -49,10 +49,13 @@ const TaskForm = ({ setTasks }) => {
       tags: [],
     });
   };
+
   return (
     <div className="app_header">
       <form onSubmit={handleSubmit}>
-        <input
+        <div className="form_group">
+          <input
+          maxlength={maxChars} // Define o número máximo de caracteres
           type="text"
           name="task"
           value={taskData.task}
@@ -60,7 +63,12 @@ const TaskForm = ({ setTasks }) => {
           placeholder="Enter your task"
           onChange={handleChange}
         />
-
+        
+        {/* Exibe o contador de caracteres */}
+        <p className="char-counter">
+          {taskData.task.length}/{maxChars} caracteres
+        </p>
+        </div>
         <div className="task_form_bottom_line">
           <div>
             <Tag
